@@ -1,0 +1,60 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center title mt-4"><b>Products</b></h2>
+            <a href="/admin/add-products" class="btn btn-success float-right ">Add Product</a>
+            <table class="table ml-4">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {{#each product}}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><b>{{this.Name}}</b></td>
+                        <td><b>{{this.Category}}</b></td>
+                        <td><b>Rs.<span class="text-danger">{{this.Price}}</span>/-</b></td>
+                        <td><b>{{this.Description}}</b></td>
+                        <td><img src="/images/{{this._id}}.jpg" alt=""></td>
+                        <td>
+                            <a href="#" class="btn btn-primary modify-btn mr-2">Edit</a>
+                            <a href="#" class="btn btn-danger modify-btn ">Delete</a>
+                        </td>
+                    </tr>
+                   {{/each}}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    html{
+        overflow-x: hidden;
+    }
+    section{
+        width: 100%;
+        position: relative;
+        left: 105px;
+    }
+    td img{
+        width: 60px;
+        height: 60px;
+    }
+    .title{
+    color: lightgray;
+    text-transform: uppercase;
+    }
+    .modify-btn{
+        width: 70px;
+    }
+</style>

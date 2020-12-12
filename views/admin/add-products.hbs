@@ -1,0 +1,111 @@
+<section class="m-auto">
+    <div class="container">
+            <h2 class="text-center title mb-3">Add Products</h2>
+            <div class="col-md-6">
+                <form action="/admin/add-products" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" name="Name" class="form-group details" placeholder="Enter product name...">
+            </div>
+            <div class="form-group">
+                <label for="">Category</label>
+                <input type="text" name="Category" class="form-group details" placeholder="Enter product category...">
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" name="Price" class="form-group details" placeholder="Enter product price...">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" name="Description" class="form-group details"
+                    placeholder="Enter product Description...">
+            </div>
+            <div class="form-group">
+                <label for="">Image</label>
+                <input type="file" name="Image" class="form-group" placeholder="Upload product image...">
+            </div>
+            <button class="btn" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+    body {
+        background-color:#182a54;
+    }
+
+    .form-group {
+        width: 500px;
+    }
+
+    .form-group input {
+        color: whitesmoke;
+        height: 37px;
+        font-size: 15px;
+
+        background-color: unset;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: 1px solid green
+    }
+
+    .details {
+        padding-left: 10px;
+    }
+
+    .form-group input:focus {
+        border: 1px solid red;
+        outline: 0 none;
+        background-color: unset !important;
+    }
+
+    .form-group input:hover {
+        border: 1px solid red;
+    }
+
+    .form-group input[type="file"]::-webkit-file-upload-button {
+        border-radius: 10px;
+        height: 35px;
+        background-color: #182a54;
+        color: grey;
+        border: 1px solid green;
+    }
+
+    .form-group input[type="file"]::-webkit-file-upload-button:hover {
+        border: 1px solid red;
+    }
+
+    .form-group input[type="file"]::-webkit-file-upload-button:focus {
+        border: 1px solid red;
+        outline: 0 none;
+    }
+
+    .form-group label {
+        color: gray;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .title{
+        color: lightgray;
+        text-transform: uppercase;
+    }
+    button{
+        background-color: unset;
+        color: lightgray;
+        border: 1px solid green !important;
+        border-radius: 15px !important;
+        width: 252px;
+        margin-left: 115px;
+    }
+    button:hover{
+        border: 1px solid red !important;
+        color: red;
+    }
+</style>
