@@ -1,1 +1,26 @@
-<h2>This is users view-product</h2>
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each products}}
+            <div class="col-md-4">
+                <div class="card" style="width: 15rem;">
+                   <img class="card-img-top" src="/images/{{this._id}}.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.Name}}</h5>
+                        <h5 class="card-title">{{this.Price}}</h5>
+                        <p class="card-text">{{this.Description}}</p>
+                        <a href="#" class="btn btn-primary">Add Cart</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<style>
+    body{
+        background-color: rgba(238, 231, 231, 0.945);
+    }
+</style>
+

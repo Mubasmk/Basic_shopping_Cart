@@ -11,31 +11,35 @@
       <li class="nav-item active" style="margin-left: 280px;">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
+      {{#if user}}
       <li class="nav-item">
         <a class="nav-link" href="#">My Orders</a>
       </li>
+      {{/if}}
       <li class="nav-item">
         <a class="nav-link" href="#">My Cart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           account
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Login</a>
-          <a class="dropdown-item" href="#">Sign up</a>
-          
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 15px; background-color: #05192d;">
+          {{#if user}}
+          <img src="/images/{{user._id}}.jpg" class="user-image" >
+          <p class="text-center mt-2 text-light" style="font-size: 18px;"><b>{{user.Name}}</b></p><hr class="new">
+          <a class="dropdown-item text-center text-danger" href="/logout"><b>Logout</b></a>
+          {{else}}
+          <a class="dropdown-item text-center text-danger" href="/login"><b>Login</b></a><hr class="new1">
+          <a class="dropdown-item text-center text-danger" href="/signup"><b>Sign up</b></a>
+          {{/if}}
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact Us</a>
       </li>
     </ul>
     <form class="form-inline my-2 ml-auto my-lg-0">
-      {{!-- <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search"> --}}
-      {{!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
-
       <div class="search">
         <div>
           <input type="text" placeholder="Search . . ." required>
@@ -47,6 +51,9 @@
 </nav>
 
 <style>
+  body{
+    background-color: rgba(238, 231, 231, 0.945);
+  }
   .navbar {
     background-color: #05192d;
   }
@@ -115,5 +122,22 @@
   .search>div>input:not(:placeholder-shown) {
     width: 250px;
     margin-left: 25px;
+  }
+  .user-image{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 55px;
+  }
+  hr.new{
+    border: 3px solid white;
+    border-radius: 15px;
+  }
+  hr.new1{
+    border: 1px solid white;
+    border-radius: 15px;
+  }
+  .dropdown-item:hover{
+    background: none;
   }
 </style>
