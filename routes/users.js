@@ -8,7 +8,7 @@ const userHelper = require('../helpers/userHelper');
 router.get('/', function (req, res, next) {
   let user=req.session.user;
   productHelper.getAllProducts().then((products) => {
-    res.render('users/view-products', { products,user })
+      res.render('users/view-products', { products,user })
   })
 });
 
@@ -65,6 +65,11 @@ router.post('/login', (req, res) => {
 router.get('/logout',(req,res)=>{
   req.session.user=null;
   res.redirect('/')
-})
+});
+
+router.get('/product-specs/:id',async(req,res)=>{
+  let products=await productHelper.getProductDetails(req.params.id);
+  res.render('users/product-specs',{products})
+});
 
 module.exports = router;

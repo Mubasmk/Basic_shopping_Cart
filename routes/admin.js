@@ -20,7 +20,7 @@ router.post('/add-products',(req,res)=>{
     let image=req.files.Image;
     image.mv('./public/images/'+id+'.jpg',(err,done)=>{
       if(!err){
-        res.render('admin/add-products',{admin:true});
+        res.render('admin/add-products');
       }else{
         console.log(err);
       }

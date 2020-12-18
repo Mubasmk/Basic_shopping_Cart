@@ -1,0 +1,161 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card" style="background: none; border: none;">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <a href="/product-specs/{{products._id}}"><img class="product-image"
+                                src="/images/{{products._id}}.jpg"
+                                alt="{{products.Item-Brand}} {{products.Item-Name}}"></a>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{products.Item-Brand}} {{products.Item-Name}}</h2>
+                        <h4 class="card-text">( {{products.Item-Tagline}} )</h4>
+                        <a href="#" class="text-primary" style="text-decoration: none;"><b>Brand:
+                                {{products.Item-Brand}}</b></a>
+                        <hr>
+                        <h6 class="text-muted">M.R.P : <del>₹ {{products.Item-MRP}}/-</del></h6>
+                        <h6 class="text-muted">Price : ₹ <span class="text-danger"
+                                style="font-size: 22px;">{{products.Item-Price}}</span>/-</h6>
+                        <h6 class="text-muted mb-4">Save : ₹ <span
+                                class="text-success">{{products.Item-SaveAmount}}</span>/-</h6>
+                        <h6>{{products.Item-Benefit}}</h6>
+                        <p>FREE Delivery by <b><span class="text-success">Real</span><span
+                                    class="text-danger">Kart</span></b></p>
+                        <a href="#" class="btn product-button">Buy Now</a>
+                        <a href="#" class="btn product-button">Add Cart</a>
+                        <hr>
+                        <h2>Specification</h2>
+                        <hr>
+                        <ul>
+                            <li>{{products.Details-Camera}}</li>
+                            <li>{{products.Details-Display}}</li>
+                            <li>{{products.Details-Memory}}</li>
+                            <li>{{products.Details-OS}}</li>
+                            <li>{{products.Details-Battery}}</li>
+                            <li>{{products.Details-Warranty}}</li>
+                            <li>{{products.Details-Box}}</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <section>
+        <h5 class="text-danger"><b>Save Extra with 4 offer</b></h5>
+        <ul>
+            <li><span class="text-danger"><b>No Cost EMI:</b></span> Avail No Cost EMI on select cards for orders above
+                ₹3000/-</li>
+            <li><span class="text-danger"><b>Exchange Offer:</b></span> Up to ₹11,200/- off on Exchange</li>
+            <li><span class="text-danger"><b>Cashback (3):</b></span> Get 25% back up to ₹150. Valid on 1st pay later
+                transaction</li>
+            <li>5% back with ICICI Bank Credit Card for Prime Members. 3% back for everybody else</li>
+            <li>Get 10% up to ₹150 back. Valid only for select Customers</li>
+            <li><span class="text-danger"><b>Partner Offers (1):</b></span> Get GST Invoice and save up to 28% on
+                business purchases</li>
+        </ul>
+    </section>
+    <hr>
+</div>
+
+<section>
+    <div class="container">
+        <h4 class="text-center">Technical Details</h4>
+        <table class="table tech">
+            <thead>
+               
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">OS</th>
+                    <td>{{products.Tech-OS}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">RAM</th>
+                    <td>{{products.Tech-RAM}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Model Number</th>
+                    <td>{{products.Tech-Model}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Dimensions</th>
+                    <td>{{products.Tech-Dimensions}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Battery</th>
+                    <td>{{products.Tech-Battery}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Color</th>
+                    <td>{{products.Tech-Color}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Special Features</th>
+                    <td>{{products.Tech-Features}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Display</th>
+                    <td>{{products.Tech-Display}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Form Factor</th>
+                    <td>{{products.Tech-Factor}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Battery Power Rating</th>
+                    <td>{{products.Tech-Battery-Rating}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Weight</th>
+                    <td>{{products.Tech-Weight}}</td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<style>
+    body {
+        background-color: white
+    }
+
+    hr {
+        border: .5px solid rgb(204, 197, 197);
+    }
+
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+
+    .product-image {
+        margin-left: 50px;
+        height: 960px;
+        cursor: auto;
+    }
+
+    .product-button {
+        background: #05192d;
+        margin: 5px 5px 0 0;
+        padding: 10px 50px;
+        color: white;
+        border-radius: 8px;
+    }
+
+    .product-button:hover {
+        color: red;
+    }
+
+    .card-body {
+        margin-left: 100px;
+    }
+    .tech tr th{
+        background-color: rgb(221, 215, 215);
+        width: 300px;
+    }
+</style>

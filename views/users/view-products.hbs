@@ -1,26 +1,61 @@
-<section>
-    <div class="container mt-5">
-        <div class="row">
-            {{#each products}}
-            <div class="col-md-4">
-                <div class="card" style="width: 15rem;">
-                   <img class="card-img-top" src="/images/{{this._id}}.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.Name}}</h5>
-                        <h5 class="card-title">{{this.Price}}</h5>
-                        <p class="card-text">{{this.Description}}</p>
-                        <a href="#" class="btn btn-primary">Add Cart</a>
+<div class="container mt-5">
+    <div class="row">
+        {{#each products}}
+        <div class="col-6 mt-3">
+            <hr>
+            <div class="card" style="background: none; border: none;">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <a href="/product-specs/{{this._id}}"><img class="product-image" src="/images/{{this._id}}.jpg"
+                            alt="{{this.Item-Brand}} {{this.Item-Name}}"></a>
+                    </div>
+                    <div class="card-body mt-4">
+                        <h4 class="card-title">{{this.Item-Brand}} {{this.Item-Name}}</h4>
+                        <h6 class="card-text">( {{this.Item-Tagline}} )</h6>
+                        <h5 class="card-title">₹ <span class="text-danger">{{this.Item-Price}} </span>/-
+                            <span style="font-size: 16px;"><del>₹{{this.Item-MRP}}</del>/-</span>
+                            <span style="font-size: 16px;">Save ₹<span class="text-success">{{this.Item-SaveAmount}}</span>/-</span>
+                        </h5>
+                        <p>{{this.Item-Benefit}}</p>
+                        <p>FREE Delivery by <b><span class="text-success">Real</span><span class="text-danger">Kart</span></b></p>
+                        <a href="#" class="btn product-button">Buy Now</a>
+                        <a href="#" class="btn product-button">Add Cart</a>
                     </div>
                 </div>
+
             </div>
-            {{/each}}
+            <hr>
         </div>
+        {{/each}}
     </div>
-</section>
+</div>
 
 <style>
-    body{
-        background-color: rgba(238, 231, 231, 0.945);
+    body {
+        background-color: white
     }
-</style>
 
+    hr {
+        border: .5px solid rgb(204, 197, 197);
+    }
+
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+    .product-image{
+        height: 300px;
+        width: 150px;
+        cursor: pointer;
+    }
+    .product-button{
+        background: #05192d;
+        margin: 5px 5px 0 0;
+        padding: 7px 20px;
+        color: white;
+        border-radius: 8px;
+    }
+     .product-button:hover{
+         color: red;
+     }
+</style>

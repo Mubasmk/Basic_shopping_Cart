@@ -7,23 +7,24 @@
             <table class="table ml-4">
                 <thead>
                     <tr>
-                        <th scope="col">No.</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Brand</th>
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Tagline</th>
                         <th scope="col">Image</th>
                     </tr>
                 </thead>
                 <tbody>
                         {{#each product}}
                     <tr>
-                        <th scope="row">1</th>
-                        <td><b>{{this.Name}}</b></td>
-                        <td><b>{{this.Category}}</b></td>
-                        <td><b>Rs.<span class="text-danger">{{this.Price}}</span>/-</b></td>
-                        <td><b>{{this.Description}}</b></td>
-                        <td><img src="/images/{{this._id}}.jpg" style="width: 55px;height: 70px; border-radius: 10px;" alt=""></td>
+                        
+                        <td><b>{{this.Item-Name}}</b></td>
+                        <td><b>{{this.Item-Brand}}</b></td>
+                        <td><b>{{this.Item-Category}}</b></td>
+                        <td><b>Rs.<span class="text-danger">{{this.Item-Price}}</span>/-</b></td>
+                        <td><b>{{this.Item-Tagline}}</b></td>
+                        <td><img src="/images/{{this._id}}.jpg" style=" border-radius: 10px;" alt=""></td>
                         <td>
                             <a href="/admin/edit-products/{{this._id}}" class="btn btn-primary modify-btn mr-2">Edit</a>
                             <a href="/admin/delete-products/{{this._id}}" class="btn btn-danger modify-btn " onclick="return confirm('Do you really want delete ')">Delete</a>
@@ -48,8 +49,8 @@
         left: 105px;
     }
     td img{
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 80px;
     }
     .title{
     color: lightgray;
