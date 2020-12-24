@@ -1,0 +1,82 @@
+<section>
+    <div class="container">
+        <table class="table mt-5">
+           
+            <tbody style="background-color: lightgray;">
+                <h2 class="text-center mt-5"><b>My Cart</b></h2>
+                {{#each products}}
+                <tr>
+                    <td>
+                        <img src="/images/{{this.product._id}}.jpg" alt="" style="width: 110; height: 155px;">
+                    </td>
+                    <td class="pt-4"><b><span
+                                style="font-size: 20px;color: rgb(77, 50, 230);">{{this.product.Item-Brand}}
+                                {{this.product.Item-Name}} ({{this.product.Item-Tagline}})</span> <br>
+                            <span style="color: rgb(77, 50, 230);">{{this.product.Item-Benefit}}</span><br>
+                            <p class="mt-1 mb-1 text-muted" style="font-size: 14px;">FREE Delivery by <b><span
+                                        class="text-success">Real</span><span class="text-danger">Kart</span></b></p>
+
+                            <button class="cart-item-count mr-1"
+                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
+                            Qty: <span id="{{this.product._id}}">{{this.quantity}}</span>
+                            <button class="cart-item-count ml-1"
+                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
+                                <a href="#" class="btn delete-btn">Remove</a>
+                        </b></td>
+                    <td>
+                        <h4 class="mt-5">Rs. <span class="text-danger"><b>{{this.product.Item-Price}}</b></span>/-</h4>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <hr>
+    <div class="float-right mb-5">
+        <h4 class=" subTotal"><b>SubTotal ({{cartCount}} items): ₹<span class="text-danger" id="total">{{total}}</span>/-</b></h4>
+        <a href="/place-order" class="btn btn-success w-100"><b>Place Order</b></a>
+    </div>
+    </div>
+</section>
+
+<style>
+    
+    .cart-item-count {
+        width: 55px;
+        border-radius: 15px;
+        background-color: #05192d;
+        color: white;
+        border: none;
+    }
+    .cart-item-count:hover{
+        color: red;
+    }
+    .cart-item-count:focus{
+        outline: none;
+    }
+    .delete-btn{
+        width: 75px;
+        font-size: 14px;
+        height: 25px;
+        padding:3px 0 ;
+        margin-bottom: 5px;
+        margin-left: 250px;
+        height: 27px;
+        border-radius: 15px;
+        background-color: #05192d;
+        color: white;
+        border: none;
+    }
+    .delete-btn:hover{
+        color: red;
+    }
+    .delete-btn:focus{
+        outline:none !important;
+        border: none !important;
+    }
+    hr{
+        border: .3px solid grey !important;
+    }
+    .subTotal{
+        font-size: 19px;
+    }
+</style>

@@ -13,15 +13,16 @@
       </li>
       {{#if user}}
       <li class="nav-item">
-        <a class="nav-link" href="#">My Orders</a>
+        <a class="nav-link" href="/my-orders">My Orders</a>
       </li>
       {{/if}}
       <li class="nav-item">
-        <a class="nav-link" href="#">My Cart</a>
+        <a class="nav-link" href="/cart">My Cart <span class="badge badge-success" id="cart-count">{{cartCount}}</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Contact Us</a>
       </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -52,7 +53,7 @@
 
 <style>
   body{
-    background-color: rgba(238, 231, 231, 0.945);
+    background-color: #f1f3f6 !important;
   }
   .navbar {
     background-color: #05192d;

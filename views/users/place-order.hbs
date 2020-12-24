@@ -1,0 +1,260 @@
+<section>
+    <div class="container mt-3">
+
+        <div class="row">
+            <div class="col-md-8 pt-3 mb-3 pl-0 pr-0 main-section">
+                <div class="login-box">
+                    <h6 class="text-muted ml-3"><span class="title-1">1</span>
+                        LOGIN <span class="fa fa-check text-primary" aria-hidden="true"></span></h6>
+                    <p style="margin-left: 75px;">{{email}}</p>
+                </div>
+                <hr>
+
+                <div class="delivery-box">
+
+                    <div style="background-color: #2874f0; padding-top: 12px;padding-bottom: 7px;">
+                        <h6 class="text-light ml-3"><span>2</span>
+                            DELIVERY ADDRESS</h6>
+                    </div>
+
+                    <div class="mt-4">
+                        <form action="/place-order" method="POST" id="checkout-form">
+                            <div class="ml-5 mt-3">
+                                <input class="address-input" type="text" name="delName" placeholder="Name" id="">
+                                <input class="address-input" type="number" name="delNumber" id=""
+                                    placeholder="10-digit mobile number">
+                            </div>
+                            <div class="ml-5">
+                                <input class="address-input" type="text" name="delPincode" id="" placeholder="Pincode">
+                                <input class="address-input" type="text" name="delLocality" id=""
+                                    placeholder="Locality">
+                            </div>
+                            <div class="ml-5">
+                                <textarea name="delAddress" id="" placeholder="Address (Area and Street)"></textarea>
+                            </div>
+                            <div class="ml-5">
+                                <input class="address-input" type="text" name="delDistrict" id=""
+                                    placeholder="City/District/Town">
+                                <select name="delState" id="">
+                                    <option hidden>Select State</option>
+                                    <option>Andaman & Nicobar Islanda</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Arunachal Pradesh</option>
+                                    <option>Assam</option>
+                                    <option>Bihar</option>
+                                    <option>Chandigarh</option>
+                                    <option>Chhattisgarh</option>
+                                    <option>Dadra & Nagar Haveli</option>
+                                    <option>Daman & Diu</option>
+                                    <option>Delhi</option>
+                                    <option>Goa</option>
+                                    <option>Gujarat</option>
+                                    <option>Haryana</option>
+                                    <option>Himachal Pradesh</option>
+                                    <option>Jammu & Kashmir</option>
+                                    <option>Jharkhand</option>
+                                    <option>Karnataka</option>
+                                    <option>Kerala</option>
+                                    <option>Ladakh</option>
+                                    <option>Lakshadweep</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Maharashtra</option>
+                                    <option>Manipur</option>
+                                    <option>Meghalaya</option>
+                                    <option>Mizoram</option>
+                                    <option>Nagaland</option>
+                                    <option>Odisha</option>
+                                    <option>Puducherry</option>
+                                    <option>Panjab</option>
+                                    <option>Rajasthan</option>
+                                    <option>Sikkim</option>
+                                    <option>Tamil Nadu</option>
+                                    <option>Telagana</option>
+                                    <option>Tripura</option>
+                                    <option>Uttarkhand</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>West Bengal</option>
+                                </select>
+                            </div>
+                            <div class="ml-5">
+                                <input class="address-input" type="text" name="delLandMark" id=""
+                                    placeholder="Landmark (optional)">
+                                <input class="address-input" type="number" name="delAlternatePhone" id=""
+                                    placeholder="Alternate Phone (optional)">
+                            </div>
+                            <p>Address Type</p>
+                            <div class="ml-5">
+                                <input type="radio" name="addressType" id="home">
+                                <label class="address-type" for="home">Home (All day delivery)</label>
+                                <input type="radio" name="address-type" id="work">
+                                <label class="address-type" for="work">Work (Delivery between 10AM-5PM)</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{!-- col-md-8 --}}
+            <div class="col-md-4">
+                <div class="price-details-box">
+                    <h6 class="text-muted">PRICE DETAILS</h6>
+                    <hr>
+                    <p>Price (6 Items) <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span></p>
+                    <p>Delivery Charges <span class="float-right text-success">FREE</span></p>
+                    <hr>
+                    <h5>Total Payable <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span></h5>
+                    <hr>
+                    <p class="text-success">Your Total Saving on this Order ₹ 5000/-</p>
+                </div>
+                <div class="payment-box">
+
+                    <div style="background-color: #2874f0;padding-bottom: 7px;">
+                        <h6 class="text-light "><span>3</span>Payment Method</h6>
+                    </div>
+                    <div class="payment-mode">
+                        <label><input type="radio" form="checkout-form" name="payment-method" value="COD" checked><b>COD</b></label><br>
+                        <label><input type="radio" form="checkout-form" name="payment-method" value="Online"><b>Online Payment</b></label>
+                    </div>
+                    <hr>
+                    <button type="submit" form="checkout-form" class="btn">Checkout</button>
+                </div>
+            </div>
+        </div>
+        {{!-- row --}}
+    </div>
+    {{!-- container --}}
+</section>
+
+<script>
+    $('#checkout-form').submit((e) => {
+        e.preventDefault();
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                if(response.status){
+                    location.href='/order-success'
+                }
+            }
+        })
+    });
+</script>
+
+<style>
+    .main-section{
+        background-color:white; 
+        border-bottom: 1px solid lightgray;
+    }
+    .login-box h6 .title-1{
+        font-size: 12px;
+        color: #2874f0; 
+        background-color: #f0f0f0;
+        border-radius: 2px;
+        padding: 3px 7px;
+        vertical-align: baseline; 
+        margin-right: 12px;
+    }
+    .delivery-box{
+        background-color: #f5faff;
+         border-bottom: 1px solid lightgray;
+         padding-left: 0;
+         padding-right: 0;
+         margin-left: 0;
+         margin-right: 0;
+    }
+    .delivery-box h6 span{
+        font-size: 12px;
+        color: #2874f0;
+        background-color: #f0f0f0; ;
+        border-radius: 2px;
+        padding: 3px 7px;
+        vertical-align: baseline; 
+        margin-right: 12px;
+    }
+    form .address-input,
+    form select {
+        width: 270px;
+        height: 45px;
+        margin-right: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        padding-left: 5px;
+    }
+
+    form textarea {
+        width: 549px;
+        height: 70px;
+        margin-bottom: 5px;
+        font-size: 14px;
+        padding-left: 5px;
+    }
+
+    form p {
+        font-size: 14px;
+        margin-left: 48px;
+        margin-bottom: 8px;
+        color: gray;
+    }
+
+    .address-type {
+        font-size: 14px;
+        padding-right: 30px;
+    }
+
+    .price-details-box {
+        background-color: white;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .price-details-box h6 {
+        padding: 15px 0 0 20px;
+    }
+
+    .price-details-box p {
+        padding: 0 20px 5px 20px;
+        font-weight: 500;
+    }
+
+    .price-details-box h5 {
+        font-size: 18px;
+        padding: 5px 13px 0 15px;
+    }
+
+    .payment-box {
+        background-color: white;
+        height: 220px;
+        margin-top: 32px;
+        border-bottom: 1px solid lightgray;
+    }
+
+    .payment-box h6 {
+        padding: 15px 0 0 20px;
+        text-transform: uppercase;
+    }
+
+    .payment-box .payment-mode {
+        padding: 0 20px 0 15px;
+        margin-top: 20px;
+    }
+
+    .payment-box button {
+        width: 300px;
+        margin-left: 25px;
+        background-color: #05192d;
+        color: white;
+    }
+    .payment-box h6 span{
+        font-size: 12px;
+        color: #2874f0;
+        background-color: #f0f0f0;
+        border-radius: 2px;
+        padding: 3px 7px;
+        vertical-align: baseline; 
+        margin-right: 12px;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>

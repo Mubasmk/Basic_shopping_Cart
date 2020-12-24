@@ -1,84 +1,267 @@
+
 <section class="m-auto">
     <div class="container">
-            <h2 class="text-center title mb-3">Edit Products</h2>
-            <div class="col-md-6">
-                <form action="/admin/edit-products/{{products._id}}" method="POST" enctype="multipart/form-data">
+        <h2 class="text-center title mr-5 mb-4 mt-4 ">Edit Products</h2><hr>
+        {{!-- <div class="col-md-6"> --}}
+        <form action="/admin/edit-products/{{products._id}}" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" name="Name" class="form-group details" value="{{products.Name}}" placeholder="Enter product name...">
+
+                <input type="text" name="Item-Name" class="details" value="{{products.Item-Name}}" style="width: 350px;" placeholder="Enter product name...">
+                <select class="details" style="width: 350px;" name="Item-Brand">
+                    <option  >Select Brand</option>
+                    <option hidden selected>{{products.Item-Brand}}</option>
+                    <option>Acer</option>
+                    <option>Avita</option>
+                    <option>BoAt</option>
+                    <option>Cosmic</option>
+                    <option>Samsung</option>
+                    <option>HP</option>
+                    <option>Lenovo</option>
+                    <option>MI</option>
+                    <option>OnePlus</option>
+                    <option>Oppo</option>
+                    <option>Realme</option>
+                    <option>Redmi</option>
+                    <option>Sanyo</option>
+                    <option>TCL</option>
+                    <option>WeCool</option>
+                    <option>Zinc</option>
+                    <option>Apple</option>
+                    <option>Honor</option>
+                    <option>Vivo</option>
+                    <option>Nokia</option>
+                </select>
             </div>
+
             <div class="form-group">
-                <label for="">Category</label>
-                <input type="text" name="Category" class="form-group details" value="{{products.Category}}" placeholder="Enter product category...">
+                <input type="text" class="details" name="Item-Tagline" value="{{products.Item-Tagline}}" placeholder="Enter product tagline" style="width: 350px;">
+                <select class="details" name="Item-Category" style="width: 350px;">
+                    <option >Select Category</option>
+                    <option selected hidden>{{products.Item-Category}}</option>
+                    <option>Mobile</option>
+                    <option>Headphone</option>
+                    <option>Television</option>
+                    <option>Laptop</option>
+                    <option>Tablet</option>
+                </select>
             </div>
+
             <div class="form-group">
-                <label for="">Price</label>
-                <input type="number" name="Price" class="form-group details" value="{{products.Price}}" placeholder="Enter product price...">
+                <div class="text-center" style="margin-right: 70px;">
+                    <label for="" >Price</label>
+                </div>
+                <input type="number" class="details" name="Price" value="{{products.Price}}" placeholder="Enter Price" style="width: 232px;">
+                <input type="number" class="details" name="Item-MRP" value="{{products.Item-MRP}}" placeholder="MRP" style="width: 232px;">
+                <input type="number" class="details" name="Item-SaveAmount" value="{{products.Item-SaveAmount}}" placeholder="Enter save" style="width: 232px;">
             </div>
+
             <div class="form-group">
-                <label for="">Description</label>
-                <input type="text" name="Description" value="{{products.Description}}" class="form-group details"
-                    placeholder="Enter product Description...">
+                <div class="text-center" style="margin-right: 70px;" >
+                    <label for="" >Specification</label>
+                </div>
+                <div>
+                    <input type="text" class="details" name="Details-Camera" value="{{products.Details-Camera}}" placeholder="Camera Details" style="width: 350px;">
+                    <input type="text" class="details" name="Details-Display" value="{{products.Details-Display}}" placeholder="Display Details" style="width: 350px;">
+                </div>
+                <div>
+                    <input type="text" class="details" name="Details-Memory" value="{{products.Details-Memory}}" placeholder="Memory Details" style="width: 350px;">
+                    <input type="text" class="details" name="Details-OS" value="{{products.Details-OS}}" placeholder="OS Details" style="width: 350px;">
+                </div>
+                <div>
+                    <input type="text" class="details" name="Details-Battery" value="{{products.Details-Battery}}" placeholder="Battery Details" style="width: 350px;">
+                    <input type="text" class="details" name="Details-Warranty" value="{{products.Details-Warranty}}" placeholder="Warranty Details" style="width: 350px;">
+                </div>
+                <div>
+                    <input name="Details-Box" value="{{products.Details-Box}}" class="details" style="width: 704px;" placeholder="Box Included"></input>
+                </div>
             </div>
+
+
             <div class="form-group">
-                <label for="">Image</label>
-      
-                <img src="/images/{{products._id}}.jpg" class="view-image" id="viewImg" alt="">
-                <input type="file" name="Image" class="form-group" onchange="imageView(event)" placeholder="Upload product image...">
+                <div class="text-center" style="margin-right: 70px;">
+                    <label for="">Technical Details</label>
+                </div>
+                <div>
+                    <select class="details" name="Tech-OS" style="width: 350px;">
+                        <option >Select OS</option>
+                        <option selected hidden>{{products.Tech-OS}}</option>
+                        <option>Android</option>
+                        <option>Windows</option>
+                        <option>Linux</option>
+                    </select>
+                    <select class="details" name="Tech-RAM" style="width: 350px;">
+                        <option >Choose RAM</option>
+                        <option selected hidden>{{products.Tech-RAM}}</option>
+                        <option>2 GB</option>
+                        <option>3 GB</option>
+                        <option>4 GB</option>
+                        <option>6 GB</option>
+                        <option>8 GB</option>
+                        <option>10 GB</option>
+                        <option>12 GB</option>
+                    </select>
+                </div>
+                    <div>
+                        <input type="text" class="details" name="Tech-Model" value="{{products.Tech-Model}}" placeholder="Model Number" style="width: 350px;">
+                        <input type="text" class="details" name="Tech-Dimensions" value="{{products.Tech-Dimensions}}" placeholder="Dimensions" style="width: 350px;">
+                    </div>
+                    <div>
+                        <select class="details" name="Tech-Battery" style="width: 350px;">
+                            <option >Select Battery</option>
+                            <option selected hidden>{{products.Tech-Battery}}</option>
+                            <option>1 Lithium Polymer Batteries required</option>
+                            <option>1 Lithium ion Batteries required</option>
+                            <option>1 A batteries required</option>
+                        </select>
+                        <select class="details" name="Tech-Color" style="width: 350px;">
+                            <option >Select Color</option>
+                            <option selected hidden>{{products.Tech-Color}}</option>
+                            <option>Glory Silver</option>
+                            <option>Celestial Black</option>
+                            <option>Matte Black</option>
+                            <option>Victory Blue</option>
+                            <option>Pebble Grey</option>
+                            <option>Electric Blue</option>
+                            <option>Black/Blue</option>
+                            <option>Slate Blue</option>
+                            <option>Speed Orange</option>
+                            <option>Prism Black</option>
+                            <option>Navy Blue</option>
+                            <option>Onyx Black</option>
+                            <option>Gray Onyx</option>
+                            <option>Pearl White</option>
+                            <option>Titanium Sapphire</option>
+                            <option>Black</option>
+                            <option>Obsidian Black</option>
+                            <option>Cyan</option>
+                            <option>Mirage Blue</option>
+                            <option>Blue</option>
+                            <option>Ocean Blue</option>
+                            <option>Mystery Black</option>
+                        </select>
+                    </div>
+                <div>
+                    <input name="Tech-Features" value="{{products.Tech-Features}}" class="details" style="width: 704px;"  placeholder="Special Features"></input>
+                </div>
+
+                <div>
+                    <select class="details" name="Tech-Display" style="width: 350px;">
+                        <option >Select Display</option>
+                        <option selected hidden>{{products.Tech-Display}}</option>
+                        <option >LCD</option>
+                        <option >Super Amoled Plus</option>
+                        <option >LED</option>
+                        <option >FHD + DotDisplay</option>
+                        <option >86% screen-to-body ratio</option>
+                        <option >522 ppi pixel density</option>
+                        <option >408 ppi pixel density</option>
+                        <option >402 ppi pixel density</option>
+                        <option >FHD + iView display</option>
+                        <option >Halo FullView Display + FHD</option>
+                        <option >Super Amoled</option>
+                        <option >Infinity V-cut display</option>
+                    </select>
+                    <select class="details" name="Tech-Factor" style="width: 350px;">
+                        <option >Form Factor</option>
+                        <option selected hidden>{{products.Tech-Factor}}</option>
+                        <option >Touchscreen</option>
+                        <option >Qwerty</option>
+                        <option >Keypad</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="number" class="details" name="Tech-Battery-Rating" value="{{products.Tech-Battery-Rating}}" placeholder="Battery Power Rating" style="width: 350px;">
+                    <input type="text" class="details" name="Tech-Weight" value="{{products.Tech-Weight}}" placeholder="Item Weight" style="width: 350px;" >
+                </div>
+                    
+                        
             </div>
-            <button class="btn" type="submit">Submit</button>
-            </form>
-        </div>
-        
+
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="text-center" style="margin-right: 70px;">
+                    <label for="">Additional Benefit</label>
+                </div>
+                <div>
+                    <select class="details" name="Item-Benefit" style="width: 704px;">
+                        <option >Select Benefit</option>
+                        <option selected hidden>{{products.Item-Benefit}}</option>
+                        <option>Save Extra with No Cost EMI</option>
+                        <option>10% off with AU Bank Debit Cards</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="text-center" style="margin-right: 70px;">
+                    <label for="">Image</label>
+                </div>
+                <div>
+                    <img src="/images/{{products._id}}.jpg" class="view-image" id="viewImg" alt="">
+                <input type="file" name="Image"  class="form-group" onchange="imageView(event)" placeholder="Upload product image..." style="width: 704px;">
+                </div>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+            
+        </form>
+    </div>
     </div>
 </section>
 
 <script>
     function imageView(event){
-        document.getElementById('viewImg').src=URL.createObjectURL(event.target.files[0]);
+        document.getElementById('viewImg').src=URL.createObjectURL(event.target.files[0])
     }
 </script>
 
+
 <style>
-    body {
+    body{
         background-color:#182a54;
     }
-
-    .form-group {
-        width: 500px;
+    .container{
+        margin-left: 75px;
     }
-
-    .form-group input {
+    .form-group input::placeholder,select::placeholder,textarea::placeholder{
+        color: whitesmoke;
+    }
+    .form-group input,select,textarea {
         color: whitesmoke;
         height: 37px;
         font-size: 15px;
-
         background-color: unset;
         margin-bottom: 10px;
         border-radius: 10px;
-        border: 1px solid green
+        border: 2px solid grey
     }
-
     .details {
         padding-left: 10px;
     }
-
-    .form-group input:focus {
+    .form-group input:focus,select:focus,textarea:focus {
         border: 1px solid red;
         outline: 0 none;
         background-color: unset !important;
     }
-
-    .form-group input:hover {
+    .form-group input:hover,select:hover,textarea:hover {
         border: 1px solid red;
     }
-
+    select option{
+        color: whitesmoke;
+        background-color: #182a54 !important;
+        border-radius: 50px !important;
+    }
     .form-group input[type="file"]::-webkit-file-upload-button {
         border-radius: 10px;
         height: 35px;
         background-color: #182a54;
         color: grey;
-        border: 1px solid green;
+        border: 1px solid grey;
     }
 
     .form-group input[type="file"]::-webkit-file-upload-button:hover {
@@ -89,7 +272,6 @@
         border: 1px solid red;
         outline: 0 none;
     }
-
     .form-group label {
         color: gray;
         font-size: 18px;
@@ -108,21 +290,25 @@
     button{
         background-color: unset;
         color: lightgray;
-        border: 1px solid green !important;
+        border: 1px solid grey !important;
         border-radius: 15px !important;
         width: 252px;
-        margin-left: 115px;
+         margin-left: 230px;
     }
     button:hover{
         border: 1px solid red !important;
         color: red;
     }
+    .form-group label{
+        text-transform: uppercase;
+        font-weight: bold;
+    }
     .view-image{
-        width: 260px;
+        width: 200px;
         height: 360px;
         position: absolute;
-        left: 38pc;
-        top: 6pc;
+        right: 45px;
+        top: 45rem;
         border-radius: 20px;
     }
 </style>
