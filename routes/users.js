@@ -34,11 +34,11 @@ router.get('/login', (req, res) => {
     res.redirect('/');
   }else{
     res.render('users/login',{logErr:req.session.logErr})
+    req.session.logErr=false
   }
 });
 
 router.get('/signup', (req, res) => {
-  console.log('signup');
   res.render('users/signup')
 });
 
@@ -86,7 +86,6 @@ router.get('/product-specs/:id',async(req,res)=>{
 router.get('/cart',verifyLogin,async(req,res)=>{
   let products=await userHelper.getCartProduct(req.session.user._id);
   let total=await userHelper.getTotalAmount(req.session.user._id);
-  console.log("product:",products);
   let cartCount=await userHelper.getCartCount(req.session.user._id);
   res.render('users/cart',{user:req.session.user,products,cartCount,total})
 });
@@ -112,21 +111,29 @@ router.get('/place-order',verifyLogin,async(req,res)=>{
 });
 
 router.post('/place-order',async(req,res)=>{
-  let products=await userHelper.getCartProductList(req.session.user._id);
-  let totalPrice=await userHelper.getTotalAmount(req.session.user._id);
+  console.log("body::",req.body);
+  req.body.userId=req.session.user._id
+  let products=await userHelper.getCartProductList(req.body.userId);
+  let totalPrice=await userHelper.getTotalAmount(req.body.userId);
   userHelper.placeorder(req.body,products,totalPrice).then((response)=>{
     res.json({status:true})
   });
 });
 
-router.get('/order-success',(req,res)=>{
-  res.render('users/order-success',{user:req.session.user});
+router.get('/order-success',async(req,res)=>{
+  let total=await userHelper.getTotalAmount(req.session.user._id);
+  let email=req.session.user.Email;
+  res.render('users/order-success',{user:req.session.user,total,email});
 });
 
 router.get('/my-orders',async(req,res)=>{
   let orders=await userHelper.getUserOrder(req.session.user._id);
-  console.log("order::",orders);
-  res.render('users/my-orders',{user:req.session.user,orders})
+  res.render('users/my-orders',{user:req.session.user,orders});
 });
+
+router.get('/view-order-products/:id',async(req,res)=>{
+  let products=await userHelper.getOrderProduct(req.params.id);
+  res.render('users/view-order-products',{user:req.session.user,products})
+})
 
 module.exports = router;

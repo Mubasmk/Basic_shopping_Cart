@@ -1,0 +1,63 @@
+<div class="container mt-5">
+            <h3 class="title text-center">ORDERED PRODUCTS</h3>
+    <div class="row">
+        {{#each products}}
+        <div class="col-6 mt-3">
+            <hr>
+            <div class="card" style="background: none; border: none;">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <a href="/product-specs/{{this.product._id}}"><img class="product-image" src="/images/{{this.product._id}}.jpg"
+                            alt="{{this.product.Item-Brand}} {{this.product.Item-Name}}"></a>
+                    </div>
+                    <div class="card-body mt-4">
+                        <h4 class="card-title">{{this.product.Item-Brand}} {{this.product.Item-Name}}</h4>
+                        <h6 class="card-text">( {{this.product.Item-Tagline}} )</h6>
+                        <h5 class="card-title">₹ <span class="text-danger">{{this.product.Price}} </span>/-
+                            <span style="font-size: 16px;"><del>₹{{this.product.Item-MRP}}</del>/-</span>
+                            <span style="font-size: 16px;">Save ₹<span class="text-success">{{this.product.Item-SaveAmount}}</span>/-</span>
+                        </h5>
+                        <p>{{this.product.Item-Benefit}}</p>
+                        <p>FREE Delivery by <b><span class="text-success">Real</span><span class="text-danger">Kart</span></b></p>
+                       
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<style>
+    
+     .title{
+        color: gray;
+        text-transform: uppercase;
+    }
+
+    hr {
+        border: .5px solid rgb(204, 197, 197);
+    }
+
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+    .product-image{
+        height: 300px;
+        width: 150px;
+        cursor: pointer;
+    }
+    .product-button{
+        background: #05192d;
+        margin: 5px 5px 0 0;
+        padding: 7px 20px;
+        color: white;
+        border-radius: 8px;
+    }
+     .product-button:hover{
+         color: red;
+     }
+</style>

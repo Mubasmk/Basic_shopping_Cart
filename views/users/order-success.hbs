@@ -3,15 +3,13 @@
     <div class="success-box">
         <h4 class="fa fa-check p-2 check-logo"></h4>
         <h4 class="title"><b>order successfully placed</b></h4><hr>
-        <h6 class="mt-4 mb-4">Your order number is <span class="text-danger">#4444444</span></h6><hr>
-        <p class="email-confirmation">you'll receive an email confirmation shortly to <span class="text-success">mubasmk@gmail.com</span></p>
+        <h6 class="mt-4 mb-4">Your order number is <span class="text-danger">#542652</span></h6><hr>
+        <p class="email-confirmation">you'll receive an email confirmation shortly to <span class="text-success"><b>{{email}}</b></span></p>
         <h5 >ORDER TOTAL
-        <span style="margin-left: 30px;"><b>5000/-</b></span></h5>
-
-          <h6 style="margin-right: 30px;">Payment Method <span style="margin-left: 35px;">COD</span></h6>
+        <span style="margin-left: 30px;"><b>₹ {{total}}/-</b></span></h5>
         <div class="buttons">
-            <a href="/my-orders" class="btn btn-order">MY ORDER</a>
-        <a href="#" class="btn btn-home">CONTINUE SHOPPING</a>
+            <a href="/my-orders" class="btn btn-order">MY ORDERS</a>
+        <a href="/" class="btn btn-home">CONTINUE SHOPPING</a>
         </div>
     </div>
     </div>
@@ -40,6 +38,7 @@
         margin:25px 0 25px 0;
     }
     .btn-order{
+        color: black;
         border: 2px solid black;
         width: 200px;
         font-size: 14px;
