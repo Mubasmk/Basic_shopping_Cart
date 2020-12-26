@@ -1,5 +1,5 @@
 <div class="container mt-5">
-            <h3 class="title text-center">ORDERED PRODUCTS</h3>
+    <h3 class="title text-center">ORDERED PRODUCTS</h3>
     <div class="row">
         {{#each products}}
         <div class="col-6 mt-3">
@@ -7,19 +7,25 @@
             <div class="card" style="background: none; border: none;">
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
-                        <a href="/product-specs/{{this.product._id}}"><img class="product-image" src="/images/{{this.product._id}}.jpg"
-                            alt="{{this.product.Item-Brand}} {{this.product.Item-Name}}"></a>
+                        <a href="/product-specs/{{this.product._id}}"><img class="product-image"
+                                src="/images/{{this.product._id}}.jpg"
+                                alt="{{this.product.Item-Brand}} {{this.product.Item-Name}}"></a>
                     </div>
                     <div class="card-body mt-4">
                         <h4 class="card-title">{{this.product.Item-Brand}} {{this.product.Item-Name}}</h4>
                         <h6 class="card-text">( {{this.product.Item-Tagline}} )</h6>
                         <h5 class="card-title">₹ <span class="text-danger">{{this.product.Price}} </span>/-
                             <span style="font-size: 16px;"><del>₹{{this.product.Item-MRP}}</del>/-</span>
-                            <span style="font-size: 16px;">Save ₹<span class="text-success">{{this.product.Item-SaveAmount}}</span>/-</span>
+                            <span style="font-size: 16px;">Save ₹<span
+                                    class="text-success">{{this.product.Item-SaveAmount}}</span>/-</span>
                         </h5>
                         <p>{{this.product.Item-Benefit}}</p>
-                        <p>FREE Delivery by <b><span class="text-success">Real</span><span class="text-danger">Kart</span></b></p>
+                        <p>FREE Delivery by <b><span class="text-success">Real</span><span
+                                    class="text-danger">Kart</span></b></p>
                        
+                            <a href="/my-orders" class="btn product-button">MY ORDERS</a>
+                            <a href="/" class="btn product-button">HOME</a>
+                        
                     </div>
                 </div>
 
@@ -31,8 +37,7 @@
 </div>
 
 <style>
-    
-     .title{
+    .title {
         color: gray;
         text-transform: uppercase;
     }
@@ -45,19 +50,23 @@
         display: flex;
         flex: 1 1 auto;
     }
-    .product-image{
+
+    .product-image {
         height: 300px;
         width: 150px;
         cursor: pointer;
     }
-    .product-button{
+
+    .product-button {
         background: #05192d;
+        width: 150px;
         margin: 5px 5px 0 0;
         padding: 7px 20px;
         color: white;
         border-radius: 8px;
     }
-     .product-button:hover{
-         color: red;
-     }
+
+    .product-button:hover {
+        color: red;
+    }
 </style>

@@ -85,7 +85,10 @@ router.get('/product-specs/:id',async(req,res)=>{
 
 router.get('/cart',verifyLogin,async(req,res)=>{
   let products=await userHelper.getCartProduct(req.session.user._id);
-  let total=await userHelper.getTotalAmount(req.session.user._id);
+  let total=0
+  if(products.length>0){
+    total=await userHelper.getTotalAmount(req.session.user._id);
+  }
   let cartCount=await userHelper.getCartCount(req.session.user._id);
   res.render('users/cart',{user:req.session.user,products,cartCount,total})
 });
@@ -111,19 +114,23 @@ router.get('/place-order',verifyLogin,async(req,res)=>{
 });
 
 router.post('/place-order',async(req,res)=>{
-  console.log("body::",req.body);
   req.body.userId=req.session.user._id
   let products=await userHelper.getCartProductList(req.body.userId);
   let totalPrice=await userHelper.getTotalAmount(req.body.userId);
-  userHelper.placeorder(req.body,products,totalPrice).then((response)=>{
-    res.json({status:true})
-  });
+  userHelper.placeorder(req.body,products,totalPrice).then((orderId)=>{
+    if(req.body['payment-method']==='COD'){
+      res.json({codSuccess:true})
+    }else{
+      userHelper.generateRazorpay(orderId,totalPrice).then((response)=>{
+        res.json(response);
+      })
+    }
+  });  
 });
 
 router.get('/order-success',async(req,res)=>{
-  let total=await userHelper.getTotalAmount(req.session.user._id);
   let email=req.session.user.Email;
-  res.render('users/order-success',{user:req.session.user,total,email});
+  res.render('users/order-success',{user:req.session.user,email});
 });
 
 router.get('/my-orders',async(req,res)=>{
@@ -134,6 +141,19 @@ router.get('/my-orders',async(req,res)=>{
 router.get('/view-order-products/:id',async(req,res)=>{
   let products=await userHelper.getOrderProduct(req.params.id);
   res.render('users/view-order-products',{user:req.session.user,products})
-})
+});
+
+router.post('/verify-payment',(req,res)=>{
+  console.log(req.body);
+  userHelper.verifyPayment(req.body).then(()=>{
+    userHelper.changePaymentStatus(req.body['order[receipt]']).then(()=>{
+      console.log("payment success");
+      res.json({status:true});
+    });
+  }).catch((err)=>{
+    console.log(err);
+    res.json({status:false,errMsg:""});
+  });
+});
 
 module.exports = router;

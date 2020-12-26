@@ -98,10 +98,12 @@
                 <div class="price-details-box">
                     <h6 class="text-muted">PRICE DETAILS</h6>
                     <hr>
-                    <p>Price (6 Items) <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span></p>
+                    <p>Price (6 Items) <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span>
+                    </p>
                     <p>Delivery Charges <span class="float-right text-success">FREE</span></p>
                     <hr>
-                    <h5>Total Payable <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span></h5>
+                    <h5>Total Payable <span class="float-right">₹ <span class="text-danger">{{total}}</span>/-</span>
+                    </h5>
                     <hr>
                     <p class="text-success">Your Total Saving on this Order ₹ 5000/-</p>
                 </div>
@@ -111,8 +113,10 @@
                         <h6 class="text-light "><span>3</span>Payment Method</h6>
                     </div>
                     <div class="payment-mode">
-                        <label><input type="radio" form="checkout-form" name="payment-method" value="COD" checked><b>COD</b></label><br>
-                        <label><input type="radio" form="checkout-form" name="payment-method" value="Online"><b>Online Payment</b></label>
+                        <label><input type="radio" form="checkout-form" name="payment-method" value="COD"
+                                checked><b>COD</b></label><br>
+                        <label><input type="radio" form="checkout-form" name="payment-method" value="Online"><b>Online
+                                Payment</b></label>
                     </div>
                     <hr>
                     <button type="submit" form="checkout-form" class="btn">Checkout</button>
@@ -132,45 +136,96 @@
             method: 'post',
             data: $('#checkout-form').serialize(),
             success: (response) => {
-                if(response.status){
-                    location.href='/order-success'
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayPayment(response)
                 }
             }
         })
     });
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_xaxHRF6TFiQXJN", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "REALKART",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response,order)
+            },
+            "prefill": {
+                "name": "Steve Lopez",
+                "email": "mubasmk@gmail.com",
+                "contact": "8848474156"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+        function verifyPayment(payment,order){
+            $.ajax({
+                url:'/verify-payment',
+                data:{
+                    payment,
+                    order
+                },
+                method:'post',
+                success:(response)=>{
+                    if(response.status){
+                        location.href='/order-success'
+                    }else{
+                        alert("payment failed")
+                    }
+                }
+            })
+        }
+    }
 </script>
 
 <style>
-    .main-section{
-        background-color:white; 
+    .main-section {
+        background-color: white;
         border-bottom: 1px solid lightgray;
     }
-    .login-box h6 .title-1{
+
+    .login-box h6 .title-1 {
         font-size: 12px;
-        color: #2874f0; 
+        color: #2874f0;
         background-color: #f0f0f0;
         border-radius: 2px;
         padding: 3px 7px;
-        vertical-align: baseline; 
+        vertical-align: baseline;
         margin-right: 12px;
     }
-    .delivery-box{
+
+    .delivery-box {
         background-color: #f5faff;
-         border-bottom: 1px solid lightgray;
-         padding-left: 0;
-         padding-right: 0;
-         margin-left: 0;
-         margin-right: 0;
+        border-bottom: 1px solid lightgray;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
-    .delivery-box h6 span{
+
+    .delivery-box h6 span {
         font-size: 12px;
         color: #2874f0;
-        background-color: #f0f0f0; ;
+        background-color: #f0f0f0;
+        ;
         border-radius: 2px;
         padding: 3px 7px;
-        vertical-align: baseline; 
+        vertical-align: baseline;
         margin-right: 12px;
     }
+
     form .address-input,
     form select {
         width: 270px;
@@ -243,15 +298,17 @@
         background-color: #05192d;
         color: white;
     }
-    .payment-box h6 span{
+
+    .payment-box h6 span {
         font-size: 12px;
         color: #2874f0;
         background-color: #f0f0f0;
         border-radius: 2px;
         padding: 3px 7px;
-        vertical-align: baseline; 
+        vertical-align: baseline;
         margin-right: 12px;
     }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
