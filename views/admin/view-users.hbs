@@ -1,0 +1,65 @@
+<section>
+    <div class="container col-md-8 mt-4">
+            <h3 class="text-center title mb-3">USERS</h3>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">USER ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">MOBILE</th>
+                        <th scope="col">IMAGE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {{#each users}}
+                    <tr>
+                        
+                        <td class="text-muted td-column"><b>{{this._id}}</b></td>
+                        <td class="td-column"><b>{{this.Name}}</b></td>
+                        <td class="td-column"><b>{{this.Email}}</b></td>
+                        <td class="td-column"><b>{{this.Mobile}}</b></td>
+                        <td style=" border-bottom: 2px solid lightgray;">
+                            <img src="/images/{{this._id}}.jpg" style="width: 90px;height: 120px; border-radius: 15px;" alt="">
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .container{
+        margin-right: 210px;
+        float: right;
+        width: 1300px;
+    }
+    .title{
+        color: gray;
+        text-transform: uppercase;
+    }
+    tbody{
+        background-color: #def8f1;
+    }
+    .td-column{
+        border-bottom: 2px solid lightgray;
+        padding-top: 50px !important;
+    }
+    thead{
+        text-transform: uppercase;
+        background-color: #2874f0;
+    }
+    .view-btn{
+        font-size: 15px;
+        border-radius: 8px;
+        background-color: #05192d;
+        color: white;
+    }
+    .view-btn:hover{
+        color: red;
+    }
+</style>

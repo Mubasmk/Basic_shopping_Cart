@@ -1,10 +1,11 @@
+
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center title mt-4"><b>Products</b></h2>
             <a href="/admin/add-products" class="btn btn-success float-right ">Add Product</a>
-            <table class="table ml-4">
+            <table class="table ml-2" id="productsTable">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
@@ -13,19 +14,20 @@
                         <th scope="col">Price</th>
                         <th scope="col">Tagline</th>
                         <th scope="col">Image</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                         {{#each product}}
                     <tr>
                         
-                        <td><b>{{this.Item-Name}}</b></td>
-                        <td><b>{{this.Item-Brand}}</b></td>
-                        <td><b>{{this.Item-Category}}</b></td>
-                        <td><b>Rs.<span class="text-danger">{{this.Price}}</span>/-</b></td>
-                        <td><b>{{this.Item-Tagline}}</b></td>
-                        <td><img src="/images/{{this._id}}.jpg" style=" border-radius: 10px;" alt=""></td>
-                        <td>
+                        <td class="td-coloumn"><a style="text-decoration: none;color: black;" href="/admin/product-specification/{{this._id}}"><b>{{this.Item-Name}}</b></a></td>
+                        <td class="td-coloumn"><b>{{this.Item-Brand}}</b></td>
+                        <td class="td-coloumn"><b>{{this.Item-Category}}</b></td>
+                        <td class="td-coloumn"><b>Rs.<span class="text-danger">{{this.Price}}</span>/-</b></td>
+                        <td class="td-coloumn"><b>{{this.Item-Tagline}}</b></td>
+                        <td style="border-bottom: 2px solid lightgray;"><a href="/admin/product-specification/{{this._id}}"><img src="/images/{{this._id}}.jpg" style=" border-radius: 10px;" alt=""></a></td>
+                        <td class="td-coloumn">
                             <a href="/admin/edit-products/{{this._id}}" class="btn btn-primary modify-btn mr-2">Edit</a>
                             <a href="/admin/delete-products/{{this._id}}" class="btn btn-danger modify-btn " onclick="return confirm('Do you really want delete ')">Delete</a>
                         </td>
@@ -37,11 +39,35 @@
         </div>
     </div>
 </section>
+<script>
+  function myFunction(){
+      var input, filter, table, tr, td, i, txtValue;
+      input=document.getElementById('myInput');
+      filter=input.value.toUpperCase();
+      table=document.getElementById('productsTable');
+      tr=table.getElementsByTagName('tr');
+
+      for(i=0;i<tr.length;i++){
+          td=tr[i].getElementsByTagName('td')[0];
+          if(td){
+              txtValue=td.textContent||td.innerText;
+              if(txtValue.toUpperCase().indexOf(filter)>-1){
+                  tr[i].style.display="";
+              }else{
+                  tr[i].style.display='none'
+              }
+          }
+      }
+  }
+</script>
 
 <style>
     
     html{
         overflow-x: hidden;
+    }
+    .dataTable_filter{
+        display: none;
     }
     section{
         width: 100%;
@@ -51,6 +77,7 @@
     td img{
         width: 48px;
         height: 80px;
+        
     }
     .title{
     color: lightgray;
@@ -58,5 +85,13 @@
     }
     .modify-btn{
         width: 70px;
+    }
+    thead{
+        text-transform: uppercase;
+        background-color: #2874f0;
+    }
+    .td-coloumn{
+        border-bottom: 2px solid lightgray;
+        padding-top: 30px !important;
     }
 </style>

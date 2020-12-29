@@ -25,16 +25,16 @@ router.get('/',async function (req, res, next) {
 
 router.get('/product-specs', (req, res) => {
   productHelper.getAllProducts().then((products) => {
-    res.render('users/product-specs', { products })
+    res.render('users/product-specs', { products,user:req.session.user })
   })
 });
 
 router.get('/login', (req, res) => {
-  if(req.session.user){
+  if(req.session.loggedIn){
     res.redirect('/');
   }else{
-    res.render('users/login',{logErr:req.session.logErr})
-    req.session.logErr=false
+    res.render('users/login',{logErr:req.session.userLogErr})
+    req.session.userLogErr=false
   }
 });
 
@@ -45,7 +45,7 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   userHelper.doSignup(req.body).then((response) => {
     req.session.user=response;
-    req.session.loggedIn=false;
+    req.session.loggedIn=true;
 
     let id=req.session.user._id;
     let image=req.files.Image;
@@ -67,7 +67,7 @@ router.post('/login', (req, res) => {
       req.session.loggedIn = true;
       res.redirect('/');
     }else{
-      req.session.logErr="Invalid username or password";
+      req.session.userLogErr="Invalid username or password";
       res.redirect('/login');
     }
   });
@@ -75,6 +75,7 @@ router.post('/login', (req, res) => {
 
 router.get('/logout',(req,res)=>{
   req.session.user=null;
+  req.session.loggedIn=false;
   res.redirect('/')
 });
 
@@ -92,6 +93,14 @@ router.get('/cart',verifyLogin,async(req,res)=>{
   let cartCount=await userHelper.getCartCount(req.session.user._id);
   res.render('users/cart',{user:req.session.user,products,cartCount,total})
 });
+
+router.get('/remove-cart-product/:id',(req,res)=>{
+  
+  let proId=req.params.id;
+  userHelper.removeCartProduct(proId).then((response)=>{
+    res.redirect('/cart');
+  })
+})
 
 router.get('/addCart/:id',(req,res)=>{
   console.log("api call");

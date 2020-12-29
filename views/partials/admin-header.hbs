@@ -3,10 +3,10 @@
 <body >
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Admin Panel</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control form-control-dark w-100" id="myInput" onkeyup="myFunction()" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
+          <a class="nav-link logout" href="/admin/logout">Sign out</a>
         </li>
       </ul>
     </nav>
@@ -17,23 +17,22 @@
           <div class="sidebar-sticky mt-3">
             <ul class="nav flex-column">
               <li class="nav-item ">
-                <a class=" nav-link active " href="#">
+                <a class=" nav-link active" href="/admin"><span class="dash-icons"><i class="fa fa-home"></i></span>
                   Home <span class="sr-only ">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="#">
-                  Products
+                <a class="nav-link" href="/admin/"><span class="dash-icons"><i class="fa fa-mobile"></i></span>
+                  <span style="margin-left: 10px;">Products</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                
-                  Users
+                <a class="nav-link" href="/admin/view-users"><span class="dash-icons"><i class="fa fa-user"></i></span>
+                <span style="margin-left: 5px;">Users</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/view-orders"><span class="dash-icons"><i class="fa fa-shopping-bag"></i></span>
 
                   Orders
                 </a>
@@ -45,8 +44,17 @@
 
 
 <style>
+  body{
+    background-color: #e3eaf3 !important;
+  }
+  .dash-icons{
+    margin-right: 10px;
+    font-size: 20px;
+  }
   .sidebar{
     background-color: #05192d;
+    text-transform: uppercase;
+    font-weight: 500;
     position: fixed;
     z-index: 1;
     height: 100vh;
@@ -57,5 +65,8 @@
 
   .nav-link{
     color: white ;
+  }
+  .logout:hover{
+    color: red !important;
   }
 </style>

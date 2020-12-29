@@ -1,0 +1,66 @@
+<section>
+    <div class="container mt-4">
+            <h3 class="text-center title mb-3">Orders</h3>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Id/user id</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Orders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {{#each orders}}
+                    <tr>
+                        
+                        <td class=" td-column"><b><span class="text-danger">{{this._id}}</span> / <br>
+                        <span class="text-success">{{this.userId}}</span></b></td>
+                        <td class="td-column"><b>{{this.paymentMethod}}</b></td>
+                        <td class="td-column"><b>Rs. <span class="text-danger">{{this.totalAmount}}</span>/-</b></td>
+                        <td class="td-column"><b><span class="text-success">{{this.status}}</span></b></td>
+                        <td class="td-column"><b>{{this.date}}</b></td>
+                        <td class="td-column">
+                            <a href="/admin/order-products/{{this._id}}" class="btn view-btn">View Orders</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+    .container{
+        margin-left: 260px;
+    }
+    .title{
+        color: gray;
+        text-transform: uppercase;
+    }
+    tbody{
+        background-color: #def8f1;
+    }
+    .td-column{
+        border-bottom: 2px solid lightgray;
+        height:90px;
+    }
+    thead{
+        text-transform: uppercase;
+        background-color: #2874f0;
+    }
+    .view-btn{
+        font-size: 15px;
+        border-radius: 8px;
+        background-color: #05192d;
+        color: white;
+    }
+    .view-btn:hover{
+        color: red;
+    }
+</style>

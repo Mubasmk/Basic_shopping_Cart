@@ -3,7 +3,7 @@
         <table class="table mt-5">
            
             <tbody style="background-color: lightgray;">
-                <h2 class="text-center mt-5"><b>My Cart</b></h2>
+                <h2 class="text-center text-muted mt-5"><b>My Cart</b></h2>
                 {{#each products}}
                 <tr>
                     <td>
@@ -21,7 +21,7 @@
                             Qty: <span id="{{this.product._id}}">{{this.quantity}}</span>
                             <button class="cart-item-count ml-1"
                                 onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</button>
-                                <a href="#" class="btn delete-btn">Remove</a>
+                                <a href="/remove-cart-product/{{this._id}}" class="btn delete-btn" onclick="return confirm('Do you really want remove')">Remove</a>
                         </b></td>
                     <td>
                         <h4 class="mt-5">Rs. <span class="text-danger"><b>{{this.product.Item-Price}}</b></span>/-</h4>

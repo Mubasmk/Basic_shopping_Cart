@@ -20,22 +20,22 @@
                     <div class="mt-4">
                         <form action="/place-order" method="POST" id="checkout-form">
                             <div class="ml-5 mt-3">
-                                <input class="address-input" type="text" name="delName" placeholder="Name" id="">
+                                <input class="address-input" type="text" name="delName" placeholder="Name" id="" required>
                                 <input class="address-input" type="number" name="delNumber" id=""
-                                    placeholder="10-digit mobile number">
+                                    placeholder="10-digit mobile number" required>
                             </div>
                             <div class="ml-5">
-                                <input class="address-input" type="text" name="delPincode" id="" placeholder="Pincode">
+                                <input class="address-input" type="text" name="delPincode" id="" placeholder="Pincode" required>
                                 <input class="address-input" type="text" name="delLocality" id=""
-                                    placeholder="Locality">
+                                    placeholder="Locality" required>
                             </div>
                             <div class="ml-5">
-                                <textarea name="delAddress" id="" placeholder="Address (Area and Street)"></textarea>
+                                <textarea name="delAddress" id="" placeholder="Address (Area and Street)" required></textarea>
                             </div>
                             <div class="ml-5">
                                 <input class="address-input" type="text" name="delDistrict" id=""
-                                    placeholder="City/District/Town">
-                                <select name="delState" id="">
+                                    placeholder="City/District/Town" required>
+                                <select name="delState" id="" required>
                                     <option hidden>Select State</option>
                                     <option>Andaman & Nicobar Islanda</option>
                                     <option>Andhra Pradesh</option>
